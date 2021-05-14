@@ -1,0 +1,212 @@
+Script started on Mon 07 Sep 2020 02:05:00 PM EDT
+[?1034hbash-4.2$ cd os161/os161-1.11/kern/main/
+bash-4.2$ cd ../..
+bash-4.2$ git fd[K[Kdiff kern/main/m
+main.c  menu.c  
+bash-4.2$ git diff kern/main/main.c 
+[?1h=diff --git a/kern/main/main.c b/kern/main/main.c[m
+index a19b0f2..3a572e8 100644[m
+--- a/kern/main/main.c[m
++++ b/kern/main/main.c[m
+@@ -1,4 +1,6 @@[m
+ /*[m
++ * Nooreldean Koteb[m
++ *[m
+  * Main.[m
+  */[m
+ [m
+@@ -16,6 +18,7 @@[m
+ #include <vm.h>[m
+ #include <syscall.h>[m
+ #include <version.h>[m
++#include <hello.h>[m
+ [m
+ /*[m
+  * These two pieces of data are maintained by the makefiles and build system.[m
+@@ -36,7 +39,6 @@ static const char harvard_copyright[] =[m
+     "Copyright (c) 2000, 2001, 2002, 2003\n"[m
+     "   President and Fellows of Harvard College.  All rights reserved.\n";[m
+ [m
+-[m
+ /*[m
+  * Initial boot sequence.[m
+  */[m
+@@ -66,7 +68,7 @@ boot(void)[m
+        kprintf("%s", harvard_copyright);[m
+        kprintf("\n");[m
+ [m
+-       kprintf("Put-your-group-name-here's system version %s (%s #%d)\n", [m
++       kprintf("Nooreldean Koteb's system version %s (%s #%d)\n", [m
+                GROUP_VERSION, buildconfig, buildversion);[m
+        kprintf("\n");[m
+ [m
+@@ -87,6 +89,8 @@ boot(void)[m
+         */[m
+        assert(sizeof(userptr_t)==sizeof(char *));[m
+        assert(sizeof(*(userptr_t)0)==sizeof(char));[m
++[m
++       hello();[m
+ }[m
+ [m
+ /*[m
+[K[?1l>bash-4.2$ git commit -am "First Com[K[K[Kcomment"
+[master 0fdc3eb] First comment
+ Committer: Nooreldean A Koteb <nkoteb@zeus-2.vse.gmu.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 62 files changed, 75 insertions(+), 2 deletions(-)
+ create mode 100644 kern/main/hello.c
+bash-4.2$ pwd
+/home/nkoteb/os161/os161-1.11
+bash-4.2$ ./configure --ostree=$HOME/os161 [K/root 
+Checking for ranlib... yes
+Checking for <err.h>... yes
+Generating defs.mk.
+bash-4.2$ cd kern.[K/conf/
+bash-4.2$ ./config Ass[K[KSST0
+Configuration ASST0
+Generating files... opt-*.h files.mk defs.mk Makefile autoconf.h autoconf.c
+Configuration in ../compile/ASST0 done
+Remember to make depend
+bash-4.2$ cd ../compile/ASST0/
+bash-4.2$ make depend
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -M ../../dev/generic/console.c ../../dev/lamebus/emu.c ../../dev/lamebus/lser.c ../../dev/lamebus/lhd.c ../../dev/generic/pseudorand.c ../../dev/generic/random.c ../../dev/lamebus/ltimer.c ../../dev/lamebus/lamebus.c ../../dev/lamebus/lrandom.c ../../dev/generic/beep.c ../../dev/lamebus/ltrace.c ../../dev/generic/rtclock.c ../../dev/lamebus/ltimer_att.c ../../dev/lamebus/con_lser.c ../../dev/lamebus/lhd_att.c ../../dev/lamebus/random_lrandom.c ../../dev/lamebus/rtclock_ltimer.c ../../dev/lamebus/ltrace_att.c ../../dev/lamebus/lser_att.c ../../dev/lamebus/lrandom_att.c ../../dev/lamebus/emu_att.c ../../dev/lamebus/beep_ltimer.c ../../dev/generic/pseudorand_att.c ../../fs/sfs/sfs_vnode.c ../../fs/sfs/sfs_fs.c ../../arch/mips/mips/dumbvm.c ../../fs/sfs/sfs_io.c ../../arch/mips/mips/cache_mips1.S ../../arch/mips/mips/exception.S ../../arch/mips/mips/lamebus_mips.c ../../arch/mips/mips/interrupt.c ../../arch/mips/mips/pcb.c ../../arch/mips/mips/ram.c ../../arch/mips/mips/spl.c ../../arch/mips/mips/start.S ../../arch/mips/mips/switch.S ../../arch/mips/mips/syscall.c ../../arch/mips/mips/threadstart.S ../../arch/mips/mips/trap.c ../../arch/mips/mips/tlb_mips1.S ../../../lib/libc/mips-setjmp.S ../../lib/copyinout.c ../../lib/array.c ../../lib/bitmap.c ../../lib/queue.c ../../lib/kheap.c ../../lib/kprintf.c ../../lib/kgets.c ../../lib/misc.c ../../lib/ntoh.c ../../../lib/libc/__printf.c ../../../lib/libc/snprintf.c ../../../lib/libc/atoi.c ../../../lib/libc/bzero.c ../../../lib/libc/memcpy.c ../../../lib/libc/memmove.c ../../../lib/libc/strcat.c ../../../lib/libc/strchr.c ../../../lib/libc/strcmp.c ../../../lib/libc/strcpy.c ../../../lib/libc/strlen.c ../../../lib/libc/strrchr.c ../../../lib/libc/strtok_r.c ../../main/hello.c ../../dev/init.c ../../fs/vfs/device.c ../../fs/vfs/vfscwd.c ../../fs/vfs/vfslist.c ../../fs/vfs/vfslookup.c ../../fs/vfs/vfspath.c ../../fs/vfs/vnode.c ../../fs/vfs/devnull.c ../../thread/hardclock.c ../../thread/synch.c ../../thread/scheduler.c ../../thread/thread.c ../../main/main.c ../../main/menu.c ../../userprog/loadelf.c ../../userprog/runprogram.c ../../userprog/uio.c ../../test/arraytest.c ../../test/bitmaptest.c ../../test/queuetest.c ../../test/threadtest.c ../../test/tt3.c ../../test/synchtest.c ../../test/malloctest.c ../../test/fstest.c ../../compile/ASST0/autoconf.c > depend.mk
+bash-4.2$ make
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../main/main.c
+../../main/main.c:2: warning: return type defaults to ‘int’
+../../main/main.c: In function ‘shutdown’:
+../../main/main.c:4: warning: implicit declaration of function ‘kprintf’
+../../main/main.c:6: warning: implicit declaration of function ‘vfs_clearbootfs’
+../../main/main.c:7: warning: implicit declaration of function ‘vfs_clearcurdir’
+../../main/main.c:8: warning: implicit declaration of function ‘vfs_unmountall’
+../../main/main.c:10: warning: implicit declaration of function ‘splhigh’
+../../main/main.c:12: warning: implicit declaration of function ‘scheduler_shutdown’
+../../main/main.c:13: warning: implicit declaration of function ‘thread_shutdown’
+../../main/main.c:14: warning: control reaches end of non-void function
+../../main/main.c: In function ‘sys_reboot’:
+../../main/main.c:29: error: ‘RB_REBOOT’ undeclared (first use in this function)
+../../main/main.c:29: error: (Each undeclared identifier is reported only once
+../../main/main.c:29: error: for each function it appears in.)
+../../main/main.c:30: error: ‘RB_HALT’ undeclared (first use in this function)
+../../main/main.c:31: error: ‘RB_POWEROFF’ undeclared (first use in this function)
+../../main/main.c:34: error: ‘EINVAL’ undeclared (first use in this function)
+../../main/main.c:42: warning: implicit declaration of function ‘md_halt’
+../../main/main.c:46: warning: implicit declaration of function ‘md_reboot’
+../../main/main.c:50: warning: implicit declaration of function ‘md_poweroff’
+../../main/main.c:54: warning: implicit declaration of function ‘panic’
+../../main/main.c: In function ‘kmain’:
+../../main/main.c:65: warning: implicit declaration of function ‘boot’
+../../main/main.c:67: warning: implicit declaration of function ‘menu’
+make: *** [main.o] Error 1
+bash-4.2$ make install
+[ -d /home/nkoteb/os161/root ] || mkdir /home/nkoteb/os161/root
+cp kernel /home/nkoteb/os161/root/kernel-ASST0
+rm -f /home/nkoteb/os161/root/kernel
+ln -s kernel-ASST0 /home/nkoteb/os161/root/kernel
+bash-4.2$ cd ..
+bash-4.2$ cd m[Kke[K[K[K[K[Kpwd
+/home/nkoteb/os161/os161-1.11/kern/compile
+bash-4.2$ cd ..
+bash-4.2$ cd main/
+bash-4.2$ ls
+hello.c  main.c  menu.c
+bash-4.2$ rm main.c 
+bash-4.2$ git checkout main.c
+bash-4.2$ ls
+hello.c  main.c  menu.c
+bash-4.2$ cd ..
+bash-4.2$ cd ..
+bash-4.2$ ls
+bin	   COPYING	   include  Makefile  README.md
+CHANGES    defs.mk	   kern     man       sbin
+configure  defs.mk.sample  lib	    mk	      testbin
+bash-4.2$ pwd
+/home/nkoteb/os161/os161-1.11
+bash-4.2$ ./configure --ostree=$HOME/os161/root 
+Checking for ranlib... yes
+Checking for <err.h>... yes
+Generating defs.mk.
+bash-4.2$ cd kern/conf/
+bash-4.2$ .con[K[K/[K[K/config ASST0
+Configuration ASST0
+Generating files... opt-*.h files.mk defs.mk Makefile autoconf.h autoconf.c
+Configuration in ../compile/ASST0 done
+Remember to make depend
+bash-4.2$ cd ../compile/Ass[K[KSST0/
+bash-4.2$ make depend
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -M ../../dev/generic/console.c ../../dev/lamebus/emu.c ../../dev/lamebus/lser.c ../../dev/lamebus/lhd.c ../../dev/generic/pseudorand.c ../../dev/generic/random.c ../../dev/lamebus/ltimer.c ../../dev/lamebus/lamebus.c ../../dev/lamebus/lrandom.c ../../dev/generic/beep.c ../../dev/lamebus/ltrace.c ../../dev/generic/rtclock.c ../../dev/lamebus/ltimer_att.c ../../dev/lamebus/con_lser.c ../../dev/lamebus/lhd_att.c ../../dev/lamebus/random_lrandom.c ../../dev/lamebus/rtclock_ltimer.c ../../dev/lamebus/ltrace_att.c ../../dev/lamebus/lser_att.c ../../dev/lamebus/lrandom_att.c ../../dev/lamebus/emu_att.c ../../dev/lamebus/beep_ltimer.c ../../dev/generic/pseudorand_att.c ../../fs/sfs/sfs_vnode.c ../../fs/sfs/sfs_fs.c ../../arch/mips/mips/dumbvm.c ../../fs/sfs/sfs_io.c ../../arch/mips/mips/cache_mips1.S ../../arch/mips/mips/exception.S ../../arch/mips/mips/lamebus_mips.c ../../arch/mips/mips/interrupt.c ../../arch/mips/mips/pcb.c ../../arch/mips/mips/ram.c ../../arch/mips/mips/spl.c ../../arch/mips/mips/start.S ../../arch/mips/mips/switch.S ../../arch/mips/mips/syscall.c ../../arch/mips/mips/threadstart.S ../../arch/mips/mips/trap.c ../../arch/mips/mips/tlb_mips1.S ../../../lib/libc/mips-setjmp.S ../../lib/copyinout.c ../../lib/array.c ../../lib/bitmap.c ../../lib/queue.c ../../lib/kheap.c ../../lib/kprintf.c ../../lib/kgets.c ../../lib/misc.c ../../lib/ntoh.c ../../../lib/libc/__printf.c ../../../lib/libc/snprintf.c ../../../lib/libc/atoi.c ../../../lib/libc/bzero.c ../../../lib/libc/memcpy.c ../../../lib/libc/memmove.c ../../../lib/libc/strcat.c ../../../lib/libc/strchr.c ../../../lib/libc/strcmp.c ../../../lib/libc/strcpy.c ../../../lib/libc/strlen.c ../../../lib/libc/strrchr.c ../../../lib/libc/strtok_r.c ../../main/hello.c ../../dev/init.c ../../fs/vfs/device.c ../../fs/vfs/vfscwd.c ../../fs/vfs/vfslist.c ../../fs/vfs/vfslookup.c ../../fs/vfs/vfspath.c ../../fs/vfs/vnode.c ../../fs/vfs/devnull.c ../../thread/hardclock.c ../../thread/synch.c ../../thread/scheduler.c ../../thread/thread.c ../../main/main.c ../../main/menu.c ../../userprog/loadelf.c ../../userprog/runprogram.c ../../userprog/uio.c ../../test/arraytest.c ../../test/bitmaptest.c ../../test/queuetest.c ../../test/threadtest.c ../../test/tt3.c ../../test/synchtest.c ../../test/malloctest.c ../../test/fstest.c ../../compile/ASST0/autoconf.c > depend.mk
+bash-4.2$ make
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../main/main.c
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../compile/ASST0/autoconf.c
+../../conf/newvers.sh ASST0
+*** This is ASST0 build #8 ***
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c vers.c
+cs161-ld   -nostdlib -Ttext 0x80001000 -T ../../arch/mips/conf/ldscript -G 0 console.o emu.o lser.o lhd.o pseudorand.o random.o ltimer.o lamebus.o lrandom.o beep.o ltrace.o rtclock.o ltimer_att.o con_lser.o lhd_att.o random_lrandom.o rtclock_ltimer.o ltrace_att.o lser_att.o lrandom_att.o emu_att.o beep_ltimer.o pseudorand_att.o sfs_vnode.o sfs_fs.o dumbvm.o sfs_io.o cache_mips1.o exception.o lamebus_mips.o interrupt.o pcb.o ram.o spl.o start.o switch.o syscall.o threadstart.o trap.o tlb_mips1.o mips-setjmp.o copyinout.o array.o bitmap.o queue.o kheap.o kprintf.o kgets.o misc.o ntoh.o __printf.o snprintf.o atoi.o bzero.o memcpy.o memmove.o strcat.o strchr.o strcmp.o strcpy.o strlen.o strrchr.o strtok_r.o hello.o init.o device.o vfscwd.o vfslist.o vfslookup.o vfspath.o vnode.o devnull.o hardclock.o synch.o scheduler.o thread.o main.o menu.o loadelf.o runprogram.o uio.o arraytest.o bitmaptest.o queuetest.o threadtest.o tt3.o synchtest.o malloctest.o fstest.o autoconf.o vers.o -o kernel
+cs161-size kernel
+   text	   data	    bss	    dec	    hex	filename
+ 160696	    448	   7668	 168812	  2936c	kernel
+bash-4.2$ make install
+[ -d /home/nkoteb/os161/root ] || mkdir /home/nkoteb/os161/root
+cp kernel /home/nkoteb/os161/root/kernel-ASST0
+rm -f /home/nkoteb/os161/root/kernel
+ln -s kernel-ASST0 /home/nkoteb/os161/root/kernel
+bash-4.2$ cd ~os/[K[K[K/os161//[Kos161-1.11/
+bash-4.2$ git diff > ../asst0/asst0.[K[K[K[K[K[K[K[K[Kt0/asst0.diff
+bash-4.2$ git commit -am "Initial 10 De[KEBUG statements"
+[master 3d74c2d] Initial 10 DEBUG statements
+ Committer: Nooreldean A Koteb <nkoteb@zeus-2.vse.gmu.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 3 files changed, 17 insertions(+), 1 deletion(-)
+bash-4.2$ cd ![K~/os161/os161-1.11/
+bash-4.2$ git tag asst[K[K[K[K[K[K[K[K[K[K[K[Kc[Kgit tag asst0-end
+bash-4.2$ git push
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+Counting objects: 261, done.
+Delta compression using up to 16 threads.
+Compressing objects:   0% (1/133)   Compressing objects:   1% (2/133)   Compressing objects:   2% (3/133)   Compressing objects:   3% (4/133)   Compressing objects:   4% (6/133)   Compressing objects:   5% (7/133)   Compressing objects:   6% (8/133)   Compressing objects:   7% (10/133)   Compressing objects:   8% (11/133)   Compressing objects:   9% (12/133)   Compressing objects:  10% (14/133)   Compressing objects:  11% (15/133)   Compressing objects:  12% (16/133)   Compressing objects:  13% (18/133)   Compressing objects:  14% (19/133)   Compressing objects:  15% (20/133)   Compressing objects:  16% (22/133)   Compressing objects:  17% (23/133)   Compressing objects:  18% (24/133)   Compressing objects:  19% (26/133)   Compressing objects:  20% (27/133)   Compressing objects:  21% (28/133)   Compressing objects:  22% (30/133)   Compressing objects:  23% (31/133)   Compressing objects:  24% (32/133)   Compressing objects:  25% (34/133)   Compressing objects:  26% (35/133)   Compressing objects:  27% (36/133)   Compressing objects:  28% (38/133)   Compressing objects:  29% (39/133)   Compressing objects:  30% (40/133)   Compressing objects:  31% (42/133)   Compressing objects:  32% (43/133)   Compressing objects:  33% (44/133)   Compressing objects:  34% (46/133)   Compressing objects:  35% (47/133)   Compressing objects:  36% (48/133)   Compressing objects:  37% (50/133)   Compressing objects:  38% (51/133)   Compressing objects:  39% (52/133)   Compressing objects:  40% (54/133)   Compressing objects:  41% (55/133)   Compressing objects:  42% (56/133)   Compressing objects:  43% (58/133)   Compressing objects:  44% (59/133)   Compressing objects:  45% (60/133)   Compressing objects:  46% (62/133)   Compressing objects:  47% (63/133)   Compressing objects:  48% (64/133)   Compressing objects:  49% (66/133)   Compressing objects:  50% (67/133)   Compressing objects:  51% (68/133)   Compressing objects:  52% (70/133)   Compressing objects:  53% (71/133)   Compressing objects:  54% (72/133)   Compressing objects:  55% (74/133)   Compressing objects:  56% (75/133)   Compressing objects:  57% (76/133)   Compressing objects:  58% (78/133)   Compressing objects:  59% (79/133)   Compressing objects:  60% (80/133)   Compressing objects:  61% (82/133)   Compressing objects:  62% (83/133)   Compressing objects:  63% (84/133)   Compressing objects:  64% (86/133)   Compressing objects:  65% (87/133)   Compressing objects:  66% (88/133)   Compressing objects:  67% (90/133)   Compressing objects:  68% (91/133)   Compressing objects:  69% (92/133)   Compressing objects:  70% (94/133)   Compressing objects:  71% (95/133)   Compressing objects:  72% (96/133)   Compressing objects:  73% (98/133)   Compressing objects:  74% (99/133)   Compressing objects:  75% (100/133)   Compressing objects:  76% (102/133)   Compressing objects:  77% (103/133)   Compressing objects:  78% (104/133)   Compressing objects:  79% (106/133)   Compressing objects:  80% (107/133)   Compressing objects:  81% (108/133)   Compressing objects:  82% (110/133)   Compressing objects:  83% (111/133)   Compressing objects:  84% (112/133)   Compressing objects:  85% (114/133)   Compressing objects:  86% (115/133)   Compressing objects:  87% (116/133)   Compressing objects:  88% (118/133)   Compressing objects:  89% (119/133)   Compressing objects:  90% (120/133)   Compressing objects:  91% (122/133)   Compressing objects:  92% (123/133)   Compressing objects:  93% (124/133)   Compressing objects:  94% (126/133)   Compressing objects:  95% (127/133)   Compressing objects:  96% (128/133)   Compressing objects:  97% (130/133)   Compressing objects:  98% (131/133)   Compressing objects:  99% (132/133)   Compressing objects: 100% (133/133)   Compressing objects: 100% (133/133), done.
+Writing objects:   0% (1/136)   Writing objects:   1% (2/136)   Writing objects:   2% (3/136)   Writing objects:   3% (5/136)   Writing objects:   4% (6/136)   Writing objects:   5% (7/136)   Writing objects:   6% (9/136)   Writing objects:   7% (10/136)   Writing objects:   8% (11/136)   Writing objects:   9% (13/136)   Writing objects:  10% (14/136)   Writing objects:  11% (15/136)   Writing objects:  12% (17/136)   Writing objects:  13% (18/136)   Writing objects:  14% (20/136)   Writing objects:  15% (21/136)   Writing objects:  16% (22/136)   Writing objects:  17% (24/136)   Writing objects:  18% (25/136)   Writing objects:  19% (26/136)   Writing objects:  20% (28/136)   Writing objects:  21% (29/136)   Writing objects:  22% (30/136)   Writing objects:  23% (32/136)   Writing objects:  24% (33/136)   Writing objects:  25% (34/136)   Writing objects:  26% (36/136)   Writing objects:  27% (37/136)   Writing objects:  28% (39/136)   Writing objects:  29% (40/136)   Writing objects:  30% (41/136)   Writing objects:  31% (43/136)   Writing objects:  32% (44/136)   Writing objects:  33% (45/136)   Writing objects:  34% (47/136)   Writing objects:  35% (48/136)   Writing objects:  36% (49/136)   Writing objects:  37% (51/136)   Writing objects:  38% (52/136)   Writing objects:  39% (54/136)   Writing objects:  40% (55/136)   Writing objects:  41% (56/136)   Writing objects:  42% (58/136)   Writing objects:  43% (59/136)   Writing objects:  44% (60/136)   Writing objects:  45% (62/136)   Writing objects:  46% (63/136)   Writing objects:  47% (64/136)   Writing objects:  48% (66/136)   Writing objects:  49% (67/136)   Writing objects:  50% (68/136)   Writing objects:  51% (70/136)   Writing objects:  52% (71/136)   Writing objects:  53% (73/136)   Writing objects:  54% (74/136)   Writing objects:  55% (75/136)   Writing objects:  56% (77/136)   Writing objects:  57% (78/136)   Writing objects:  58% (79/136)   Writing objects:  59% (81/136)   Writing objects:  60% (82/136)   Writing objects:  61% (83/136)   Writing objects:  62% (85/136)   Writing objects:  63% (86/136)   Writing objects:  64% (88/136)   Writing objects:  65% (89/136)   Writing objects:  66% (90/136)   Writing objects:  67% (92/136)   Writing objects:  68% (93/136)   Writing objects:  69% (94/136)   Writing objects:  70% (96/136)   Writing objects:  71% (97/136)   Writing objects:  72% (98/136)   Writing objects:  73% (100/136)   Writing objects:  74% (101/136)   Writing objects:  75% (102/136)   Writing objects:  76% (104/136)   Writing objects:  77% (105/136)   Writing objects:  78% (107/136)   Writing objects:  79% (108/136)   Writing objects:  80% (109/136)   Writing objects:  81% (111/136)   Writing objects:  82% (112/136)   Writing objects:  83% (113/136)   Writing objects:  84% (115/136)   Writing objects:  85% (116/136)   Writing objects:  86% (117/136)   Writing objects:  87% (119/136)   Writing objects:  88% (120/136)   Writing objects:  89% (122/136)   Writing objects:  90% (123/136)   Writing objects:  91% (124/136)   Writing objects:  92% (126/136)   Writing objects:  93% (127/136)   Writing objects:  94% (128/136)   Writing objects:  95% (130/136)   Writing objects:  96% (131/136)   Writing objects:  97% (132/136)   Writing objects:  98% (134/136)   Writing objects:  99% (135/136)   Writing objects: 100% (136/136)   Writing objects: 100% (136/136), 9.84 KiB | 0 bytes/s, done.
+Total 136 (delta 120), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/120)[Kremote: Resolving deltas:   1% (2/120)[Kremote: Resolving deltas:   2% (3/120)[Kremote: Resolving deltas:   3% (4/120)[Kremote: Resolving deltas:   4% (5/120)[Kremote: Resolving deltas:   5% (6/120)[Kremote: Resolving deltas:   6% (8/120)[Kremote: Resolving deltas:   7% (9/120)[Kremote: Resolving deltas:   8% (10/120)[Kremote: Resolving deltas:   9% (11/120)[Kremote: Resolving deltas:  10% (12/120)[Kremote: Resolving deltas:  11% (14/120)[Kremote: Resolving deltas:  13% (16/120)[Kremote: Resolving deltas:  14% (17/120)[Kremote: Resolving deltas:  15% (18/120)[Kremote: Resolving deltas:  16% (20/120)[Kremote: Resolving deltas:  17% (21/120)[Kremote: Resolving deltas:  18% (22/120)[Kremote: Resolving deltas:  19% (23/120)[Kremote: Resolving deltas:  20% (24/120)[Kremote: Resolving deltas:  21% (26/120)[Kremote: Resolving deltas:  22% (27/120)[Kremote: Resolving deltas:  23% (28/120)[Kremote: Resolving deltas:  24% (29/120)[Kremote: Resolving deltas:  25% (30/120)[Kremote: Resolving deltas:  26% (32/120)[Kremote: Resolving deltas:  27% (33/120)[Kremote: Resolving deltas:  28% (34/120)[Kremote: Resolving deltas:  29% (35/120)[Kremote: Resolving deltas:  30% (36/120)[Kremote: Resolving deltas:  31% (38/120)[Kremote: Resolving deltas:  32% (39/120)[Kremote: Resolving deltas:  33% (40/120)[Kremote: Resolving deltas:  34% (41/120)[Kremote: Resolving deltas:  35% (42/120)[Kremote: Resolving deltas:  36% (44/120)[Kremote: Resolving deltas:  37% (45/120)[Kremote: Resolving deltas:  38% (46/120)[Kremote: Resolving deltas:  39% (47/120)[Kremote: Resolving deltas:  40% (48/120)[Kremote: Resolving deltas:  41% (50/120)[Kremote: Resolving deltas:  42% (51/120)[Kremote: Resolving deltas:  43% (52/120)[Kremote: Resolving deltas:  44% (53/120)[Kremote: Resolving deltas:  45% (54/120)[Kremote: Resolving deltas:  46% (56/120)[Kremote: Resolving deltas:  47% (57/120)[Kremote: Resolving deltas:  48% (58/120)[Kremote: Resolving deltas:  49% (59/120)[Kremote: Resolving deltas:  50% (60/120)[Kremote: Resolving deltas:  51% (62/120)[Kremote: Resolving deltas:  52% (63/120)[Kremote: Resolving deltas:  53% (64/120)[Kremote: Resolving deltas:  54% (65/120)[Kremote: Resolving deltas:  55% (66/120)[Kremote: Resolving deltas:  56% (68/120)[Kremote: Resolving deltas:  57% (69/120)[Kremote: Resolving deltas:  58% (70/120)[Kremote: Resolving deltas:  59% (71/120)[Kremote: Resolving deltas:  60% (72/120)[Kremote: Resolving deltas:  61% (74/120)[Kremote: Resolving deltas:  62% (75/120)[Kremote: Resolving deltas:  63% (76/120)[Kremote: Resolving deltas:  64% (77/120)[Kremote: Resolving deltas:  65% (78/120)[Kremote: Resolving deltas:  66% (80/120)[Kremote: Resolving deltas:  67% (81/120)[Kremote: Resolving deltas:  68% (82/120)[Kremote: Resolving deltas:  69% (83/120)[Kremote: Resolving deltas:  70% (84/120)[Kremote: Resolving deltas:  71% (86/120)[Kremote: Resolving deltas:  72% (87/120)[Kremote: Resolving deltas:  73% (88/120)[Kremote: Resolving deltas:  74% (89/120)[Kremote: Resolving deltas:  75% (90/120)[Kremote: Resolving deltas:  76% (92/120)[Kremote: Resolving deltas:  77% (93/120)[Kremote: Resolving deltas:  78% (94/120)[Kremote: Resolving deltas:  79% (95/120)[Kremote: Resolving deltas:  80% (96/120)[Kremote: Resolving deltas:  84% (101/120)[Kremote: Resolving deltas:  85% (102/120)[Kremote: Resolving deltas:  86% (104/120)[Kremote: Resolving deltas:  87% (105/120)[Kremote: Resolving deltas:  88% (106/120)[Kremote: Resolving deltas:  89% (107/120)[Kremote: Resolving deltas:  90% (108/120)[Kremote: Resolving deltas:  91% (110/120)[Kremote: Resolving deltas:  92% (111/120)[Kremote: Resolving deltas:  93% (112/120)[Kremote: Resolving deltas:  94% (113/120)[Kremote: Resolving deltas:  95% (114/120)[Kremote: Resolving deltas:  96% (116/120)[Kremote: Resolving deltas:  97% (117/120)[Kremote: Resolving deltas:  98% (118/120)[Kremote: Resolving deltas:  99% (119/120)[Kremote: Resolving deltas: 100% (120/120)[Kremote: Resolving deltas: 100% (120/120), completed with 113 local objects.[K
+To git@git.gmu.edu:nkoteb/os161-1.11.git
+   23b899f..3d74c2d  master -> master
+bash-4.2$ git arg[Kchive --prefix=os161=[K-1.11/ asst0-end | gzip -c > ../asst0 [K/os16 1-1.11.tar.gz
+bash-4.2$ cd ..
+bash-4.2$ ls
+asst0  build-asst0.php	os161-1.11  root
+bash-4.2$ tar cf -asst[K[K[K[K asst0 | gzip -c > nkoteb-asst0.tar.gz
+bash-4.2$ exit
+exit
+
+Script done on Mon 07 Sep 2020 03:00:21 PM EDT
